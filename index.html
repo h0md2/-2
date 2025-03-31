@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيديتك هنا!</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 50px;
+        }
+        #gift {
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #d35400;
+            min-height: 30px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>اضغط الزر وخذ عيديتك! 🎉</h1>
+    <p id="gift">🤔</p>
+    <button id="getGift">احصل على عيديتك</button>
+    
+    <script>
+        const gifts = [
+            "💵 50 ريال!", "💰 100 ريال!", "🎁 مفاجأة خاصة!", 
+            "🥳 دعوة على القهوة!", "🎊 عيدية 200 ريال!"
+        ];
+        let availableGifts = 25;
+        const storageKey = "receivedEidGift";
+
+        document.getElementById("getGift").addEventListener("click", function() {
+            if (availableGifts > 0 && !localStorage.getItem(storageKey)) {
+                let giftElement = document.getElementById("gift");
+                let spinCount = 15;
+                let interval = setInterval(() => {
+                    giftElement.textContent = gifts[Math.floor(Math.random() * gifts.length)];
+                    spinCount--;
+                    if (spinCount <= 0) {
+                        clearInterval(interval);
+                        let finalGift = gifts[Math.floor(Math.random() * gifts.length)];
+                        giftElement.textContent = finalGift;
+                        localStorage.setItem(storageKey, "true");
+                        availableGifts--;
+                        document.getElementById("getGift").disabled = true;
+                    }
+                }, 100);
+            } else {
+                document.getElementById("gift").textContent = availableGifts > 0 ? "❌ لقد حصلت على عيديتك بالفعل!" : "انتهت العيديات! 🎁";
+                this.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>
