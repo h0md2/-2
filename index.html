@@ -41,7 +41,7 @@
     
     <script>
         const gifts = [
-            "💵 50 ريال!", "💰 100 ريال!", "🎁  عشاء يحبه قلبك!", 
+            "💵 50 ريال!", "💰 100 ريال!", "🎁 مفاجأة خاصة!", 
             "🥳 دعوة على القهوة!", "🎊 عيدية 200 ريال!"
         ];
         let availableGifts = 25;
@@ -64,9 +64,9 @@
                     }
                 }, 100);
             } else {
-                document.getElementById("gift").textContent = availableGifts > 0 ? "❌ اخذت عيديتك ي طماع!" : "انتهت العيديات! 🎁";
+                document.getElementById("gift").textContent = availableGifts > 0 ? "❌ لقد حصلت على عيديتك بالفعل!" : "انتهت العيديات! 🎁";
                 this.disabled = true;
-            } 
+            }
         });
     </script>
 </body>
